@@ -84,6 +84,28 @@ public class BuyerOrderController {
 
 
     /* 订单详细 */
+    @GetMapping("/detail")
+    public ResultModel<OrderDTO> detail(@RequestParam("openid") String openid,
+                                        @RequestParam("orderId") String orderId) {
+
+        //TODO 不安全
+        OrderDTO orderDTO = orderService.findOne(orderId);
+
+        return ResultModelUtil.success(orderDTO);
+
+    }
+
 
     /* 取消订单 */
+    @PostMapping("/cancel")
+    public ResultModel cancel(@RequestParam("openid") String openid,
+                              @RequestParam("orderId") String orderId) {
+
+        //TODO 不安全
+        OrderDTO orderDTO = orderService.findOne(orderId);
+
+        orderService.cancel(orderDTO);
+
+        return ResultModelUtil.success();
+    }
 }
