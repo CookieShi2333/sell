@@ -33,4 +33,9 @@ public class OrderMasterRepositoryTest {
         Assert.assertNotNull(result);
     }
 
+    @Test
+    public void findByBuyerOpenid() {
+
+    }
+
 }
