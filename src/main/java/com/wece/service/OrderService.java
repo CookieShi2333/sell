@@ -20,7 +20,9 @@ public interface OrderService {
     OrderDTO create(OrderDTO orderDTO);
 
     /* 查询单个订单 */
-    OrderDTO findOne(String OrderId);
+   // OrderDTO findOne(String OrderId);
+
+    OrderDTO findByOrderIdAndBuyerOpenid(String orderId, String buyerOpenid);
 
     /* 查询订单列表 */
     Page<OrderDTO> findList(String BuyerOpenid, Pageable pageable);

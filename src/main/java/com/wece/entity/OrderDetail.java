@@ -35,9 +35,6 @@ public class OrderDetail {
     /* 商品图片 */
     private String productIcon;
 
-    private Date createTime;
-
-    private Date updateTime;
 
     public OrderDetail() {
     }

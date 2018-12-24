@@ -97,10 +97,30 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
-    @Override
+/*    @Override
     public OrderDTO findOne(String orderId) {
 
         OrderMaster orderMaster = orderMasterRepository.findById(orderId).get();
+        if (orderMaster == null) {
+            throw new SellException(ResultEnum.ORDER_MASTER_NOT_EXIST);
+        }
+
+        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderMaster.getOrderId());
+        if (CollectionUtils.isEmpty(orderDetailList)) {
+            throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST);
+        }
+
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster,orderDTO);
+        orderDTO.setOrderDetailList(orderDetailList);
+
+        return orderDTO;
+    }*/
+
+    @Override
+    public OrderDTO findByOrderIdAndBuyerOpenid(String orderId, String buyerOpenid) {
+
+        OrderMaster orderMaster = orderMasterRepository.findByOrderIdAndAndBuyerOpenid(orderId, buyerOpenid);
         if (orderMaster == null) {
             throw new SellException(ResultEnum.ORDER_MASTER_NOT_EXIST);
         }

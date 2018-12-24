@@ -88,8 +88,8 @@ public class BuyerOrderController {
     public ResultModel<OrderDTO> detail(@RequestParam("openid") String openid,
                                         @RequestParam("orderId") String orderId) {
 
-        //TODO 不安全
-        OrderDTO orderDTO = orderService.findOne(orderId);
+
+        OrderDTO orderDTO = orderService.findByOrderIdAndBuyerOpenid(orderId,openid);
 
         return ResultModelUtil.success(orderDTO);
 
@@ -101,8 +101,8 @@ public class BuyerOrderController {
     public ResultModel cancel(@RequestParam("openid") String openid,
                               @RequestParam("orderId") String orderId) {
 
-        //TODO 不安全
-        OrderDTO orderDTO = orderService.findOne(orderId);
+
+        OrderDTO orderDTO = orderService.findByOrderIdAndBuyerOpenid(orderId,openid);
 
         orderService.cancel(orderDTO);
 

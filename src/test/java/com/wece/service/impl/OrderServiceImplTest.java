@@ -68,7 +68,7 @@ public class OrderServiceImplTest {
     @Test
     public void findOne() throws Exception {
 
-        OrderDTO result = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.findByOrderIdAndBuyerOpenid(ORDER_ID,OPENID);
         log.info("[查询订单] result={}",result);
         Assert.assertEquals(ORDER_ID,result.getOrderId());
 
@@ -85,21 +85,21 @@ public class OrderServiceImplTest {
     @Test
     @Transactional
     public void cancel() throws Exception {
-        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO orderDTO = orderService.findByOrderIdAndBuyerOpenid(ORDER_ID,OPENID);
         OrderDTO result = orderService.cancel(orderDTO);
         Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
     }
 
     @Test
     public void finish() throws Exception {
-        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO orderDTO = orderService.findByOrderIdAndBuyerOpenid(ORDER_ID,OPENID);
         OrderDTO result = orderService.finish(orderDTO);
         Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
     }
 
     @Test
     public void paid() throws Exception {
-        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO orderDTO = orderService.findByOrderIdAndBuyerOpenid(ORDER_ID,OPENID);
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
     }
